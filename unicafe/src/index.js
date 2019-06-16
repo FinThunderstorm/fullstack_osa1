@@ -8,24 +8,33 @@ const Button = (props) => (
     </button>
 )
 
-//valmiiksi defraktoitu, tällä kommentilla gitille ymmärrys et muutoksia
 const Statistics = props => {
     const all = props.goodValue + props.neutralValue + props.badValue
     const average = (props.goodValue+(props.badValue*-1))/all
     const positive = props.goodValue/all*100
 
-    return (
-    <>
-        <h1>statistics</h1>
-        <div>good: {props.goodValue}</div>
-        <div>neutral: {props.neutralValue}</div>
-        <div>bad: {props.badValue}</div>
-        <div>all: {all}</div> 
-        <div>average: {average}</div>
-        <div>positive: {positive}%</div>
-
-    </>
-    )
+    if(all > 0){
+        return (
+            <>
+                <h1>statistics</h1>
+                <div>good: {props.goodValue}</div>
+                <div>neutral: {props.neutralValue}</div>
+                <div>bad: {props.badValue}</div>
+                <div>all: {all}</div> 
+                <div>average: {average}</div>
+                <div>positive: {positive}%</div>
+        
+            </>
+            )
+    } else {
+        return (
+            <>
+                <h1>statistics</h1>
+                <div>No feedback given</div>
+            </>
+        )
+    }
+    
 }
 
 const App = () => {
