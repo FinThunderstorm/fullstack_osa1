@@ -2,11 +2,17 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-const Button = (props) => (
-    <button onClick={props.handleClick}>
-        {props.text}
-    </button>
-)
+const Button = (props) => {
+    return (
+        <button onClick={props.handleClick}>{props.text}</button>
+    )  
+}
+
+const Statistic = (props) => {
+    return (
+        <div>{props.text}: {props.value}</div>
+    )
+}
 
 const Statistics = props => {
     const all = props.goodValue + props.neutralValue + props.badValue
@@ -17,12 +23,12 @@ const Statistics = props => {
         return (
             <>
                 <h1>statistics</h1>
-                <div>good: {props.goodValue}</div>
-                <div>neutral: {props.neutralValue}</div>
-                <div>bad: {props.badValue}</div>
-                <div>all: {all}</div> 
-                <div>average: {average}</div>
-                <div>positive: {positive}%</div>
+                <Statistic text="good" value={props.goodValue}/>
+                <Statistic text="neutral" value={props.neutralValue}/>
+                <Statistic text="bad" value={props.badValue}/>
+                <Statistic text="all" value={all}/>
+                <Statistic text="average" value={average+"%"}/>
+                <Statistic text="positive" value={positive+"%"}/>
         
             </>
             )
