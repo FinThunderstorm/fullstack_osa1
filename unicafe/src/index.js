@@ -10,26 +10,28 @@ const Button = (props) => {
 
 const Statistic = (props) => {
     return (
-        <div>{props.text}: {props.value}</div>
+        <tbody>
+        <tr>
+            <td>{props.text}</td>
+            <td>{props.value}</td>
+        </tr>
+        </tbody>
     )
 }
 
 const Statistics = props => {
-    const all = props.goodValue + props.neutralValue + props.badValue
-    const average = (props.goodValue+(props.badValue*-1))/all
-    const positive = props.goodValue/all*100
-
-    if(all > 0){
+    if(props.allValue > 0){
         return (
             <>
                 <h1>statistics</h1>
+                <table>
                 <Statistic text="good" value={props.goodValue}/>
                 <Statistic text="neutral" value={props.neutralValue}/>
                 <Statistic text="bad" value={props.badValue}/>
-                <Statistic text="all" value={all}/>
-                <Statistic text="average" value={average+"%"}/>
-                <Statistic text="positive" value={positive+"%"}/>
-        
+                <Statistic text="all" value={props.allValue}/>
+                <Statistic text="average" value={props.averageValue}/>
+                <Statistic text="positive" value={props.positiveValue+"%"}/>
+                </table>
             </>
             )
     } else {
@@ -47,6 +49,9 @@ const App = () => {
     const [good, setGood] = useState(0)
     const [neutral, setNeutral] = useState(0)
     const [bad, setBad] = useState(0)      
+    const all = good + neutral + bad
+    const average = (good + (bad*-1))/all
+    const positive = good / all * 100
 
     const setToGood = value => {
         setGood(value)
@@ -66,7 +71,7 @@ const App = () => {
             <Button handleClick={() => setToGood(good + 1)} text="good" />
             <Button handleClick={() => setToNeutral(neutral + 1)} text="neutral"/>
             <Button handleClick={() => setToBad(bad + 1)} text="bad"/>
-            <Statistics goodValue={good} neutralValue={neutral} badValue={bad}/>
+            <Statistics goodValue={good} neutralValue={neutral} badValue={bad} allValue={all} averageValue={average} positiveValue={positive}/>
 
         </div>
     )
