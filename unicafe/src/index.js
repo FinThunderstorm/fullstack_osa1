@@ -8,6 +8,7 @@ const Button = (props) => (
     </button>
 )
 
+//valmiiksi defraktoitu, tällä kommentilla gitille ymmärrys et muutoksia
 const Statistics = props => {
     const all = props.goodValue + props.neutralValue + props.badValue
     const average = (props.goodValue+(props.badValue*-1))/all
